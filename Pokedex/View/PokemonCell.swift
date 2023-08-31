@@ -11,8 +11,9 @@ import SDWebImage
 final class PokemonCell: UICollectionViewCell {
     
     //MARK: - Properties
-    private var pokemonImageView: ImageContainerView = {
+    private lazy var pokemonImageView: ImageContainerView = {
         let view = ImageContainerView()
+        
         return view
     }()
     
@@ -91,6 +92,8 @@ final class PokemonCell: UICollectionViewCell {
         pokemonImageView.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.width)
         }
+        
+        
     }
     
     func configure(pokemon: Pokemon) {

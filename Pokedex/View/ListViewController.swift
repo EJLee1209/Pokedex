@@ -13,15 +13,11 @@ import SnapKit
 class ListViewController: UIViewController {
     
     //MARK: - Properties
-    
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let width = view.frame.width/2 - 16
-        layout.itemSize = .init(width: width, height: width + 100)
-        layout.minimumLineSpacing = 12
-        layout.minimumInteritemSpacing = 8
+        let layout = createFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(PokemonCell.self, forCellWithReuseIdentifier: PokemonCell.identifier)
+        view.contentInset = .init(top: 0, left: 10, bottom: 0, right: 10)
         return view
     }()
     
@@ -53,9 +49,7 @@ class ListViewController: UIViewController {
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(8)
-            make.right.equalToSuperview().offset(-8)
-            make.top.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
@@ -70,9 +64,15 @@ class ListViewController: UIViewController {
         
         collectionView.reachedBottomPublisher()
             .sink { [weak self] _ in
-                print("nextPage")
                 self?.viewModel.nextPage()
             }.store(in: &cancellables)
+    }
+    
+    private func createFlowLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        let width = view.frame.width/2 - 15
+        layout.itemSize = .init(width: width, height: width + 100)
+        return layout
     }
     
 }

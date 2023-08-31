@@ -14,13 +14,14 @@ final class ImageContainerView: UIView {
     private var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.addCornerRadius(radius: 12)
         view.addShadow(
             offset: CGSize(width: 0, height: 3),
             color: .black,
-            radius: 12.0,
-            opacity: 0.1
+            shadowRadius: 8.0,
+            opacity: 0.3,
+            cornerRadius: 12.0
         )
+        
         return view
     }()
     
