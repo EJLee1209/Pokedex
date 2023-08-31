@@ -21,6 +21,7 @@ struct PokedexResponse: Codable {
 // MARK: - Pokemon
 // Diffable DataSource를 사용하기 위해 Hashable을 준수
 struct Pokemon: Codable, Hashable {
+    let identifier = UUID()
     let height, id: Int
     let name: String
     let stats: [Stat]
@@ -40,11 +41,11 @@ struct Pokemon: Codable, Hashable {
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(identifier)
     }
 
     static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.identifier == rhs.identifier
     }
 }
 
