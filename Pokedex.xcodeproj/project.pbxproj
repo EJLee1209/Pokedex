@@ -15,6 +15,7 @@
 		CF3ECD352AA042A500964294 /* ThemeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD342AA042A500964294 /* ThemeFont.swift */; };
 		CF3ECD372AA043D000964294 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD362AA043D000964294 /* ThemeColor.swift */; };
 		CF3ECD3A2AA043F800964294 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD392AA043F800964294 /* UIColor+Extension.swift */; };
+		CF3ECD3C2AA048C700964294 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD3B2AA048C700964294 /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CF3ECD342AA042A500964294 /* ThemeFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFont.swift; sourceTree = "<group>"; };
 		CF3ECD362AA043D000964294 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		CF3ECD392AA043F800964294 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CF3ECD3B2AA048C700964294 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		CF3ECD302AA0426B00964294 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF3ECD3B2AA048C700964294 /* Pokemon.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF3ECD3C2AA048C700964294 /* Pokemon.swift in Sources */,
 				CF3ECD352AA042A500964294 /* ThemeFont.swift in Sources */,
 				CF3ECD1F2AA0416000964294 /* ViewController.swift in Sources */,
 				CF3ECD1B2AA0416000964294 /* AppDelegate.swift in Sources */,
