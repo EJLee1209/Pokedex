@@ -70,6 +70,7 @@ class ListViewController: UIViewController {
         
         collectionView.reachedBottomPublisher()
             .sink { [weak self] _ in
+                print("nextPage")
                 self?.viewModel.nextPage()
             }.store(in: &cancellables)
     }

@@ -23,20 +23,8 @@ class PokedexService: PokedexServiceType {
             .sink { completion in
                 print(completion)
                 
-            } receiveValue: { response in
-                // 다음 페이지 url 저장
-                self.nextUrl = response.next
-                
-                response.results.forEach { result in
-                    self.fetchPokemon(result: result)
-                        .sink { completion in
-                            
-                        } receiveValue: { pokemon in
-                            self.pokemonList.append(pokemon)
-                            self.pokemonList.sort(by: { $0.id < $1.id })
-                            self.pokemonListPublisher.send(self.pokemonList)
-                        }.store(in: &self.cancellables)
-                }
+            } receiveValue: { [weak self] response in
+                self?.makePokemonListUseResponse(response)
             }.store(in: &cancellables)
 
     }
@@ -54,25 +42,29 @@ class PokedexService: PokedexServiceType {
             .eraseToAnyPublisher()
             .sink { _ in
                 
-            } receiveValue: { response in
-                // 다음 페이지 url 저장
-                self.nextUrl = response.next
-                
-                response.results.forEach { result in
-                    self.fetchPokemon(result: result)
-                        .sink { completion in
-                            
-                        } receiveValue: { pokemon in
-                            self.pokemonList.append(pokemon)
-                            self.pokemonList.sort(by: { $0.id < $1.id })
-                            self.pokemonListPublisher.send(self.pokemonList)
-                        }.store(in: &self.cancellables)
-                }
+            } receiveValue: { [weak self] response in
+                self?.makePokemonListUseResponse(response)
             }.store(in: &cancellables)
     }
     
-    func fetchPokemon(result: PokedexResponse.PokedexResult) -> AnyPublisher<Pokemon, Error> {
+    private func fetchPokemon(result: PokedexResponse.PokedexResult) -> AnyPublisher<Pokemon, Error> {
         return httpRequestPublisher(for: result.url, decodeType: Pokemon.self).eraseToAnyPublisher()
+    }
+    
+    private func makePokemonListUseResponse(_ response: PokedexResponse) {
+        // 다음 페이지 url 저장
+        self.nextUrl = response.next
+        
+        response.results.forEach { result in
+            self.fetchPokemon(result: result)
+                .sink { completion in
+                    
+                } receiveValue: { [weak self] pokemon in
+                    guard let self = self else { return }
+                    self.pokemonListPublisher.value.append(pokemon)
+                    self.pokemonListPublisher.value.sort(by: { $0.id < $1.id })
+                }.store(in: &self.cancellables)
+        }
     }
     
 }

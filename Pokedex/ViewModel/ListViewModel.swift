@@ -41,6 +41,8 @@ final class ListViewModel {
     }
     
     func updateCollectionView(with pokemons: [Pokemon]) {
+        if pokemons.count % 20 != 0 { return }
+        
         var snapshot = Snapshot()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(pokemons)
