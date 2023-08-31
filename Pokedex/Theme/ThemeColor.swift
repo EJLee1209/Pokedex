@@ -28,5 +28,44 @@ struct ThemeColor {
     static let dragon = UIColor(hexString: "5462D6")
     static let dark = UIColor(hexString: "4F4747")
     static let fairy = UIColor(hexString: "FFB1FF")
+    
+    static func typeColor(type: PokemonType) -> UIColor {
+        switch type {
+        case .normal:
+            return ThemeColor.normal
+        case .fighting:
+            return ThemeColor.fighting
+        case .flying:
+            return ThemeColor.flying
+        case .poison:
+            return ThemeColor.poison
+        case .ground:
+            return ThemeColor.ground
+        case .rock:
+            return ThemeColor.rock
+        case .bug:
+            return ThemeColor.bug
+        case .ghost:
+            return ThemeColor.ghost
+        case .steel:
+            return ThemeColor.steel
+        case .fire:
+            return ThemeColor.fire
+        case .water:
+            return ThemeColor.water
+        case .grass:
+            return ThemeColor.grass
+        case .psychic:
+            return ThemeColor.psychic
+        case .ice:
+            return ThemeColor.ice
+        case .dragon:
+            return ThemeColor.dragon
+        case .dark:
+            return ThemeColor.dark
+        case .fairy:
+            return ThemeColor.fairy
+        }
+    }
 }
 

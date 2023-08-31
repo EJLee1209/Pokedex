@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct PokedexResponse: Codable, Hashable {
+struct PokedexResponse: Codable {
     let count: Int
     let next: String?
     
-    struct PokedexResult: Codable, Hashable {
+    struct PokedexResult: Codable {
         let name: String
         let url: String
     }
@@ -19,6 +19,7 @@ struct PokedexResponse: Codable, Hashable {
 }
 
 // MARK: - Pokemon
+// Diffable DataSource를 사용하기 위해 Hashable을 준수
 struct Pokemon: Codable, Hashable {
     let height, id: Int
     let name: String
@@ -36,6 +37,14 @@ struct Pokemon: Codable, Hashable {
     
     var tag: String {
         return String(format: "#%04d", id)
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
