@@ -33,6 +33,7 @@ class PokedexService: PokedexServiceType {
                             
                         } receiveValue: { pokemon in
                             self.pokemonList.append(pokemon)
+                            self.pokemonList.sort(by: { $0.id < $1.id })
                             self.pokemonListPublisher.send(self.pokemonList)
                         }.store(in: &self.cancellables)
                 }
@@ -63,6 +64,7 @@ class PokedexService: PokedexServiceType {
                             
                         } receiveValue: { pokemon in
                             self.pokemonList.append(pokemon)
+                            self.pokemonList.sort(by: { $0.id < $1.id })
                             self.pokemonListPublisher.send(self.pokemonList)
                         }.store(in: &self.cancellables)
                 }
