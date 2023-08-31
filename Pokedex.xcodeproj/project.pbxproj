@@ -16,6 +16,12 @@
 		CF3ECD372AA043D000964294 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD362AA043D000964294 /* ThemeColor.swift */; };
 		CF3ECD3A2AA043F800964294 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD392AA043F800964294 /* UIColor+Extension.swift */; };
 		CF3ECD3C2AA048C700964294 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD3B2AA048C700964294 /* Pokemon.swift */; };
+		CF3ECD3F2AA04BA800964294 /* PokedexServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD3E2AA04BA800964294 /* PokedexServiceType.swift */; };
+		CF3ECD422AA04BCB00964294 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CF3ECD412AA04BCB00964294 /* SDWebImage */; };
+		CF3ECD452AA04BDA00964294 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CF3ECD442AA04BDA00964294 /* CombineCocoa */; };
+		CF3ECD482AA04BE600964294 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF3ECD472AA04BE600964294 /* SnapKit */; };
+		CF3ECD4A2AA051AF00964294 /* PokedexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD492AA051AF00964294 /* PokedexService.swift */; };
+		CF3ECD4C2AA07F0A00964294 /* PokemonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD4B2AA07F0A00964294 /* PokemonType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +36,9 @@
 		CF3ECD362AA043D000964294 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		CF3ECD392AA043F800964294 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		CF3ECD3B2AA048C700964294 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		CF3ECD3E2AA04BA800964294 /* PokedexServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexServiceType.swift; sourceTree = "<group>"; };
+		CF3ECD492AA051AF00964294 /* PokedexService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexService.swift; sourceTree = "<group>"; };
+		CF3ECD4B2AA07F0A00964294 /* PokemonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +46,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF3ECD482AA04BE600964294 /* SnapKit in Frameworks */,
+				CF3ECD452AA04BDA00964294 /* CombineCocoa in Frameworks */,
+				CF3ECD422AA04BCB00964294 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +77,7 @@
 				CF3ECD1A2AA0416000964294 /* AppDelegate.swift */,
 				CF3ECD1C2AA0416000964294 /* SceneDelegate.swift */,
 				CF3ECD322AA0429700964294 /* Theme */,
+				CF3ECD3D2AA04B8900964294 /* Service */,
 				CF3ECD302AA0426B00964294 /* Model */,
 				CF3ECD2F2AA0426700964294 /* View */,
 				CF3ECD2E2AA0425F00964294 /* ViewModel */,
@@ -95,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				CF3ECD3B2AA048C700964294 /* Pokemon.swift */,
+				CF3ECD4B2AA07F0A00964294 /* PokemonType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,6 +130,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		CF3ECD3D2AA04B8900964294 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CF3ECD3E2AA04BA800964294 /* PokedexServiceType.swift */,
+				CF3ECD492AA051AF00964294 /* PokedexService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,6 +155,11 @@
 			dependencies = (
 			);
 			name = Pokedex;
+			packageProductDependencies = (
+				CF3ECD412AA04BCB00964294 /* SDWebImage */,
+				CF3ECD442AA04BDA00964294 /* CombineCocoa */,
+				CF3ECD472AA04BE600964294 /* SnapKit */,
+			);
 			productName = Pokedex;
 			productReference = CF3ECD172AA0416000964294 /* Pokedex.app */;
 			productType = "com.apple.product-type.application";
@@ -160,6 +188,11 @@
 				Base,
 			);
 			mainGroup = CF3ECD0E2AA0416000964294;
+			packageReferences = (
+				CF3ECD402AA04BCB00964294 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				CF3ECD432AA04BDA00964294 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				CF3ECD462AA04BE600964294 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = CF3ECD182AA0416000964294 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -186,11 +219,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF3ECD3F2AA04BA800964294 /* PokedexServiceType.swift in Sources */,
+				CF3ECD4A2AA051AF00964294 /* PokedexService.swift in Sources */,
 				CF3ECD3C2AA048C700964294 /* Pokemon.swift in Sources */,
 				CF3ECD352AA042A500964294 /* ThemeFont.swift in Sources */,
 				CF3ECD1F2AA0416000964294 /* ViewController.swift in Sources */,
 				CF3ECD1B2AA0416000964294 /* AppDelegate.swift in Sources */,
 				CF3ECD3A2AA043F800964294 /* UIColor+Extension.swift in Sources */,
+				CF3ECD4C2AA07F0A00964294 /* PokemonType.swift in Sources */,
 				CF3ECD1D2AA0416000964294 /* SceneDelegate.swift in Sources */,
 				CF3ECD372AA043D000964294 /* ThemeColor.swift in Sources */,
 			);
@@ -402,6 +438,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CF3ECD402AA04BCB00964294 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		CF3ECD432AA04BDA00964294 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
+		CF3ECD462AA04BE600964294 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF3ECD412AA04BCB00964294 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF3ECD402AA04BCB00964294 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		CF3ECD442AA04BDA00964294 /* CombineCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF3ECD432AA04BDA00964294 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			productName = CombineCocoa;
+		};
+		CF3ECD472AA04BE600964294 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF3ECD462AA04BE600964294 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CF3ECD0F2AA0416000964294 /* Project object */;
 }

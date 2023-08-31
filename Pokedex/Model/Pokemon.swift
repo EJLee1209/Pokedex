@@ -9,7 +9,7 @@ import Foundation
 
 struct PokedexResponse: Codable, Hashable {
     let count: Int
-    let next: String
+    let next: String?
     
     struct PokedexResult: Codable, Hashable {
         let name: String
@@ -23,8 +23,12 @@ struct Pokemon: Codable, Hashable {
     let height, id: Int
     let name: String
     let stats: [Stat]
-    let types: [TypeElement]
+    private let types: [TypeElement]
     let weight: Int
+    
+    var pokemonTypes: [PokemonType] {
+        return types.map { PokemonType(rawValue: $0.type.name) ?? .normal }
+    }
     
     var imageUrl: String {
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"

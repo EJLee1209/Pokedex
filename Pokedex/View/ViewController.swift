@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
+    
+    private var cancellables: Set<AnyCancellable> = .init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
     }
 }
