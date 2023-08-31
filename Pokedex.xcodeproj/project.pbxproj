@@ -112,8 +112,7 @@
 			children = (
 				CF3ECD1E2AA0416000964294 /* ListViewController.swift */,
 				CF3ECD4D2AA080E000964294 /* PokemonCell.swift */,
-				CF3ECD4F2AA081E500964294 /* PaddingLabel.swift */,
-				CF3ECD532AA08C6C00964294 /* ImageContainerView.swift */,
+				CF3ECD572AA091F300964294 /* Custom */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -152,6 +151,15 @@
 				CF3ECD492AA051AF00964294 /* PokedexService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		CF3ECD572AA091F300964294 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				CF3ECD4F2AA081E500964294 /* PaddingLabel.swift */,
+				CF3ECD532AA08C6C00964294 /* ImageContainerView.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

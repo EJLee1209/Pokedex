@@ -12,6 +12,8 @@ protocol PokedexServiceType {
     
     var pokemonListPublisher: CurrentValueSubject<[Pokemon], Never> { get }
     
+    func fetchFirstPokedexResponse() -> AnyPublisher<PokedexResponse, Error>
+    func fetchNextPokedexResponse()
 }
 
 extension PokedexServiceType {

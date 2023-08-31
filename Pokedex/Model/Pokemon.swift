@@ -48,12 +48,12 @@ struct Pokemon: Codable, Hashable {
     }
 }
 
-struct StatClass: Codable, Hashable {
+struct StatClass: Codable {
     let name: String
     let url: String
 }
 
-struct Stat: Codable, Hashable {
+struct Stat: Codable {
     let baseStat, effort: Int
     let stat: StatClass
 
@@ -63,7 +63,7 @@ struct Stat: Codable, Hashable {
     }
 }
 
-struct TypeElement: Codable, Hashable {
+struct TypeElement: Codable {
     let slot: Int
     let type: StatClass
 }

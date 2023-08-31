@@ -7,14 +7,8 @@
 
 import UIKit
 import Combine
+import CombineCocoa
 import SnapKit
-
-// UICollectionView Section
-enum Section: CaseIterable {
-    case pokemonList
-}
-
-
 
 class ListViewController: UIViewController {
     
@@ -22,9 +16,9 @@ class ListViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let width = view.frame.width/2 - 8
+        let width = view.frame.width/2 - 16
         layout.itemSize = .init(width: width, height: width + 100)
-        layout.minimumLineSpacing = 20
+        layout.minimumLineSpacing = 12
         layout.minimumInteritemSpacing = 8
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(PokemonCell.self, forCellWithReuseIdentifier: PokemonCell.identifier)
@@ -50,12 +44,7 @@ class ListViewController: UIViewController {
         
         navigationItem.title = "Pokedex"
         layout()
-        
-        viewModel.setupDataSource(collectionView: self.collectionView)
-        viewModel.pokemonListPublisher
-            .sink { [weak self] pokemons in
-                self?.viewModel.updateCollectionView(with: pokemons)
-            }.store(in: &cancellables)
+        bind()
     }
     
     //MARK: - Helpers
@@ -64,7 +53,25 @@ class ListViewController: UIViewController {
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.top.bottom.equalToSuperview()
         }
     }
+    
+    private func bind() {
+        viewModel.setupDataSource(collectionView: self.collectionView)
+        
+        viewModel.pokemonListPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] pokemons in
+                self?.viewModel.updateCollectionView(with: pokemons)
+            }.store(in: &cancellables)
+        
+        collectionView.reachedBottomPublisher()
+            .sink { [weak self] _ in
+                self?.viewModel.nextPage()
+            }.store(in: &cancellables)
+    }
+    
 }

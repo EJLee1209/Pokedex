@@ -9,6 +9,11 @@ import Foundation
 import Combine
 import UIKit
 
+// UICollectionView Section
+enum Section: CaseIterable {
+    case pokemonList
+}
+
 typealias DataSource = UICollectionViewDiffableDataSource<Section, Pokemon>
 typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Pokemon>
 
@@ -17,10 +22,9 @@ final class ListViewModel {
     private let pokedexService: PokedexServiceType
     
     private var dataSource: DataSource!
-    private var cancellables: Set<AnyCancellable> = .init()
     
     init(pokedexService: PokedexServiceType) {
-        self.pokedexService = pokedexService    
+        self.pokedexService = pokedexService
     }
     
     var pokemonListPublisher: AnyPublisher<[Pokemon], Never> {
@@ -43,4 +47,7 @@ final class ListViewModel {
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
+    func nextPage() {
+        self.pokedexService.fetchNextPokedexResponse()
+    }
 }
