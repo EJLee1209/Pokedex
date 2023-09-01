@@ -11,11 +11,7 @@ import SDWebImage
 final class PokemonCell: UICollectionViewCell {
     
     //MARK: - Properties
-    private lazy var pokemonImageView: ImageContainerView = {
-        let view = ImageContainerView()
-        
-        return view
-    }()
+    private lazy var pokemonImageView = ImageContainerView()
     
     private var tagLabel: UILabel = {
         let label = UILabel()
@@ -31,26 +27,8 @@ final class PokemonCell: UICollectionViewCell {
         return label
     }()
     
-    private var firstTypeLabel: PaddingLabel = {
-        let label = PaddingLabel()
-        label.verticalPadding = 5
-        label.clipsToBounds = true
-        label.layer.cornerRadius = 5
-        label.font = ThemeFont.bold(ofSize: 16)
-        label.textAlignment = .center
-        label.textColor = .white
-        return label
-    }()
-    
-    private var secondTypeLabel: PaddingLabel = {
-        let label = PaddingLabel()
-        label.verticalPadding = 5
-        label.clipsToBounds = true
-        label.layer.cornerRadius = 5
-        label.textAlignment = .center
-        label.textColor = .white
-        return label
-    }()
+    private var firstTypeLabel = TypeLabel()
+    private var secondTypeLabel = TypeLabel()
     
     private lazy var typeStackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [firstTypeLabel, secondTypeLabel])
