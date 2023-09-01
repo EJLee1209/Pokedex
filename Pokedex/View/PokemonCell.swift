@@ -60,6 +60,16 @@ final class PokemonCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        tagLabel.text = ""
+        nameLabel.text = ""
+        firstTypeLabel.text = ""
+        secondTypeLabel.text = ""
+        firstTypeLabel.backgroundColor = .clear
+        secondTypeLabel.backgroundColor = .clear
+        pokemonImageView.configure(imageUrl: "")
+    }
+    
     //MARK: - Helpers
     private func layout() {
         contentView.addSubview(vStackView)
@@ -71,7 +81,8 @@ final class PokemonCell: UICollectionViewCell {
             make.height.equalTo(contentView.snp.width)
         }
         
-        
+        pokemonImageView.setContainerViewShadow()
+        pokemonImageView.setContainerViewCornerRadius(radius: 12)
     }
     
     func configure(pokemon: Pokemon) {
