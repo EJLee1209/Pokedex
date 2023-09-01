@@ -21,6 +21,8 @@ class ListViewController: UIViewController {
         return view
     }()
     
+    private let loadingView: LoadingView = .init(frame: .zero)
+    
     private var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: ListViewModel
@@ -43,6 +45,13 @@ class ListViewController: UIViewController {
         bind()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.layoutIfNeeded()
+        
+        loadingView.setLoadingViewCornerRadius()
+    }
+    
     //MARK: - Helpers
     private func layout() {
         view.backgroundColor = .white
@@ -50,6 +59,12 @@ class ListViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        view.addSubview(loadingView)
+        loadingView.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
     }
     
@@ -59,11 +74,13 @@ class ListViewController: UIViewController {
         viewModel.pokemonListPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] pokemons in
+                self?.loadingView.hideLoadingViewAndStopAnimation()
                 self?.viewModel.updateCollectionView(with: pokemons)
             }.store(in: &cancellables)
         
         collectionView.reachedBottomPublisher()
             .sink { [weak self] _ in
+                self?.loadingView.showLoadingViewAndStartAnimation()
                 self?.viewModel.nextPage()
             }.store(in: &cancellables)
         
