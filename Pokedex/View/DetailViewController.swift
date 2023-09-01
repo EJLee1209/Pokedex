@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CombineCocoa
+import Combine
 import SDWebImage
 
 final class DetailViewController: UIViewController {
@@ -14,6 +16,24 @@ final class DetailViewController: UIViewController {
     private let pokemonImageView = ImageContainerView()
     private let infoView = PokemonInfoView()
     private let statView = PokemonStatView()
+    private let tagLabel: UILabel = {
+        let label = UILabel()
+        label.font = ThemeFont.bold(ofSize: 16)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let closeButton: UIButton = {
+        let button = UIButton(type: .close)
+        return button
+    }()
+    
+    private lazy var topHStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [tagLabel, closeButton])
+        sv.axis = .horizontal
+        sv.distribution = .equalSpacing
+        return sv
+    }()
     
     private lazy var vStackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [pokemonImageView, infoView, statView])
@@ -31,6 +51,7 @@ final class DetailViewController: UIViewController {
         return view
     }()
     
+    private var cancellables: Set<AnyCancellable> = .init()
     let viewModel: DetailViewModel
     
     //MARK: - LifeCycle
@@ -48,6 +69,12 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         layout()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.layoutIfNeeded()
+        
         bind()
     }
     
@@ -60,10 +87,16 @@ final class DetailViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         
+        view.addSubview(topHStackView)
+        topHStackView.snp.makeConstraints { make in
+            make.top.left.right.equalTo(view.safeAreaLayoutGuide).inset(15)
+        }
+        
         scrollView.addSubview(vStackView)
         vStackView.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            make.edges.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-30)
         }
         
         pokemonImageView.snp.makeConstraints { make in
@@ -73,7 +106,7 @@ final class DetailViewController: UIViewController {
         pokemonImageView.setImageViewContentInset(inset: 80)
         let gradientLayer = pokemonImageView.setContainerViewGradientLayer(colors: [
             viewModel.firstTypeColor?.cgColor ?? ThemeColor.typeColor(type: .normal).cgColor,
-            viewModel.secondTypeColor?.cgColor ?? ThemeColor.typeColor(type: .normal).cgColor])
+            viewModel.secondTypeColor?.cgColor ?? UIColor.white.cgColor])
         
         pokemonImageView.setCornerRadius(gradientLayer: gradientLayer, radius: 12, corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
     }
@@ -82,6 +115,12 @@ final class DetailViewController: UIViewController {
         pokemonImageView.configure(imageUrl: viewModel.imageURL)
         infoView.configure(viewModel: self.viewModel)
         statView.configure(viewModel: self.viewModel)
+        tagLabel.text = "#\(viewModel.tag)"
+        
+        closeButton.tapPublisher
+            .sink { [weak self] _ in
+                self?.dismiss(animated: true)
+            }.store(in: &cancellables)
     }
 }
 

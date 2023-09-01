@@ -46,6 +46,7 @@ final class statGraph: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = ThemeFont.regular(ofSize: 12)
+        label.layer.opacity = 0
         return label
     }()
     
@@ -93,8 +94,6 @@ final class statGraph: UIView {
         statLabel.text = "\(statValue)/300"
         graphView.backgroundColor = statColor
         
-        layoutIfNeeded()
-        
         let graphWidth = graphBackground.frame.width / 300.0 * CGFloat(statValue)
         
         if graphWidth <= 50 {
@@ -106,8 +105,13 @@ final class statGraph: UIView {
         }
         
         graphView.snp.updateConstraints { make in
+            make.left.bottom.top.equalToSuperview()
             make.width.equalTo(graphWidth)
         }
+        
+        UIView.animate(withDuration: 1) {
+            self.statLabel.layer.opacity = 1
+            self.layoutIfNeeded()
+        }
     }
-    
 }

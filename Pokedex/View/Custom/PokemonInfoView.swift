@@ -10,6 +10,19 @@ import UIKit
 final class PokemonInfoView: UIView {
     
     //MARK: - Properties
+    private let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.addShadow(
+            offset: CGSize(width: 0, height: 3),
+            color: .black,
+            shadowRadius: 8.0,
+            opacity: 0.3,
+            cornerRadius: 12
+        )
+        return view
+    }()
+    
     private var nameLabel: UILabel = {
         let label = UILabel()
         label.font = ThemeFont.demiBold(ofSize: 22)
@@ -73,11 +86,18 @@ final class PokemonInfoView: UIView {
     
     //MARK: - Helpers
     private func layout() {
-        addSubview(vStackView)
-        vStackView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+        addSubview(containerView)
+        containerView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(-50)
+            make.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
         }
+        
+        containerView.addSubview(vStackView)
+        vStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(10)
+        }
+        
     }
     
     func configure(viewModel: DetailViewModel) {
@@ -88,6 +108,11 @@ final class PokemonInfoView: UIView {
         secondTypeLabel.backgroundColor = viewModel.secondTypeColor
         weightLabel.attributedText = viewModel.weightText
         heightLabel.attributedText = viewModel.heightText
+        
+        if secondTypeLabel.text == nil {
+            secondTypeLabel.isHidden = true
+        }
+        
     }
     
 }

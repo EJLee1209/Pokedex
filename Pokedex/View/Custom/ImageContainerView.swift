@@ -85,7 +85,8 @@ final class ImageContainerView: UIView {
     
     func setImageViewContentInset(inset: CGFloat) {
         pokemonImageView.snp.updateConstraints { make in
-            make.edges.equalToSuperview().inset(inset)
+            make.bottom.left.right.equalToSuperview().inset(inset)
+            make.top.equalToSuperview().inset(inset+40)
         }
     }
     

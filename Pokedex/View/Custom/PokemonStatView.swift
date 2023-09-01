@@ -11,6 +11,19 @@ final class PokemonStatView: UIView {
     
     //MARK: - Properties
     
+    private let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.addShadow(
+            offset: CGSize(width: 0, height: 3),
+            color: .black,
+            shadowRadius: 8.0,
+            opacity: 0.3,
+            cornerRadius: 12
+        )
+        return view
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Base Stats"
@@ -47,9 +60,14 @@ final class PokemonStatView: UIView {
     //MARK: - Helpers
     private func layout() {
         
-        addSubview(vStackView)
-        vStackView.snp.makeConstraints { make in
+        addSubview(containerView)
+        containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(20)
+        }
+        
+        containerView.addSubview(vStackView)
+        vStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(10)
         }
     }
     
@@ -58,6 +76,8 @@ final class PokemonStatView: UIView {
         atkStatView.configure(statName: "ATK", statValue: viewModel.attack, statColor: .systemYellow)
         defStatView.configure(statName: "DEF", statValue: viewModel.defense, statColor: .systemBlue)
         spdStatView.configure(statName: "SPD", statValue: viewModel.speed, statColor: .systemGray)
+        
+        
     }
     
 }

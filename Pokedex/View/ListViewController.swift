@@ -84,6 +84,7 @@ class ListViewController: UIViewController {
         let pokemon = viewModel.pokemonList[indexPath.row]
         let detailVM = DetailViewModel(pokemon: pokemon)
         let detailVC = DetailViewController(viewModel: detailVM)
+        detailVC.modalPresentationStyle = .fullScreen
         present(detailVC, animated: true)
     }
     

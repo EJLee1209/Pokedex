@@ -97,5 +97,7 @@ final class PokemonCell: UICollectionViewCell {
             secondTypeLabel.text = pokemon.pokemonTypes[1].rawValue
             secondTypeLabel.backgroundColor = ThemeColor.typeColor(type: pokemon.pokemonTypes[1])
         }
+        
+        
     }
 }

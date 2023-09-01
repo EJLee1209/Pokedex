@@ -11,7 +11,6 @@
 		CF08E3342AA1ABFD0052AEA3 /* PokemonInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E3332AA1ABFD0052AEA3 /* PokemonInfoView.swift */; };
 		CF08E3362AA1AC0D0052AEA3 /* PokemonStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E3352AA1AC0D0052AEA3 /* PokemonStatView.swift */; };
 		CF08E3392AA1BA930052AEA3 /* StatGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E3382AA1BA930052AEA3 /* StatGraph.swift */; };
-		CF08E33B2AA1EAA10052AEA3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E33A2AA1EAA10052AEA3 /* GradientView.swift */; };
 		CF3ECD1B2AA0416000964294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD1A2AA0416000964294 /* AppDelegate.swift */; };
 		CF3ECD1D2AA0416000964294 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD1C2AA0416000964294 /* SceneDelegate.swift */; };
 		CF3ECD1F2AA0416000964294 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD1E2AA0416000964294 /* ListViewController.swift */; };
@@ -40,7 +39,6 @@
 		CF08E3332AA1ABFD0052AEA3 /* PokemonInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoView.swift; sourceTree = "<group>"; };
 		CF08E3352AA1AC0D0052AEA3 /* PokemonStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonStatView.swift; sourceTree = "<group>"; };
 		CF08E3382AA1BA930052AEA3 /* StatGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatGraph.swift; sourceTree = "<group>"; };
-		CF08E33A2AA1EAA10052AEA3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CF3ECD172AA0416000964294 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3ECD1A2AA0416000964294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF3ECD1C2AA0416000964294 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +75,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF08E33C2AA1F9F90052AEA3 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
 		CF3ECD0E2AA0416000964294 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +109,7 @@
 				CF3ECD2F2AA0426700964294 /* View */,
 				CF3ECD2E2AA0425F00964294 /* ViewModel */,
 				CF3ECD382AA043E600964294 /* Extension */,
+				CF08E33C2AA1F9F90052AEA3 /* Transition */,
 				CF3ECD232AA0416100964294 /* Assets.xcassets */,
 				CF3ECD252AA0416100964294 /* LaunchScreen.storyboard */,
 				CF3ECD282AA0416100964294 /* Info.plist */,
@@ -175,7 +181,6 @@
 				CF08E3332AA1ABFD0052AEA3 /* PokemonInfoView.swift */,
 				CF08E3352AA1AC0D0052AEA3 /* PokemonStatView.swift */,
 				CF08E3382AA1BA930052AEA3 /* StatGraph.swift */,
-				CF08E33A2AA1EAA10052AEA3 /* GradientView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -271,7 +276,6 @@
 				CF3ECD592AA0A5F200964294 /* DetailViewController.swift in Sources */,
 				CF3ECD1F2AA0416000964294 /* ListViewController.swift in Sources */,
 				CF08E3362AA1AC0D0052AEA3 /* PokemonStatView.swift in Sources */,
-				CF08E33B2AA1EAA10052AEA3 /* GradientView.swift in Sources */,
 				CF3ECD1B2AA0416000964294 /* AppDelegate.swift in Sources */,
 				CF3ECD542AA08C6C00964294 /* ImageContainerView.swift in Sources */,
 				CF08E3342AA1ABFD0052AEA3 /* PokemonInfoView.swift in Sources */,

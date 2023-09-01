@@ -41,7 +41,7 @@ struct Pokemon: Codable, Hashable {
     }
     
     var tag: String {
-        return String(format: "#%04d", id)
+        return String(format: "%04d", id)
     }
     
     func statValue(for statType: StatType) -> Int {
