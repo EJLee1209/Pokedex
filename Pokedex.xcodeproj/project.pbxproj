@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		CF08E3312AA1A3B70052AEA3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E3302AA1A3B70052AEA3 /* DetailViewModel.swift */; };
+		CF08E3342AA1ABFD0052AEA3 /* PokemonInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E3332AA1ABFD0052AEA3 /* PokemonInfoView.swift */; };
+		CF08E3362AA1AC0D0052AEA3 /* PokemonStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E3352AA1AC0D0052AEA3 /* PokemonStatView.swift */; };
+		CF08E3392AA1BA930052AEA3 /* StatGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E3382AA1BA930052AEA3 /* StatGraph.swift */; };
+		CF08E33B2AA1EAA10052AEA3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08E33A2AA1EAA10052AEA3 /* GradientView.swift */; };
 		CF3ECD1B2AA0416000964294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD1A2AA0416000964294 /* AppDelegate.swift */; };
 		CF3ECD1D2AA0416000964294 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD1C2AA0416000964294 /* SceneDelegate.swift */; };
 		CF3ECD1F2AA0416000964294 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD1E2AA0416000964294 /* ListViewController.swift */; };
@@ -33,6 +37,10 @@
 
 /* Begin PBXFileReference section */
 		CF08E3302AA1A3B70052AEA3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		CF08E3332AA1ABFD0052AEA3 /* PokemonInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoView.swift; sourceTree = "<group>"; };
+		CF08E3352AA1AC0D0052AEA3 /* PokemonStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonStatView.swift; sourceTree = "<group>"; };
+		CF08E3382AA1BA930052AEA3 /* StatGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatGraph.swift; sourceTree = "<group>"; };
+		CF08E33A2AA1EAA10052AEA3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CF3ECD172AA0416000964294 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3ECD1A2AA0416000964294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF3ECD1C2AA0416000964294 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +172,10 @@
 			children = (
 				CF3ECD4F2AA081E500964294 /* TypeLabel.swift */,
 				CF3ECD532AA08C6C00964294 /* ImageContainerView.swift */,
+				CF08E3332AA1ABFD0052AEA3 /* PokemonInfoView.swift */,
+				CF08E3352AA1AC0D0052AEA3 /* PokemonStatView.swift */,
+				CF08E3382AA1BA930052AEA3 /* StatGraph.swift */,
+				CF08E33A2AA1EAA10052AEA3 /* GradientView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -258,10 +270,14 @@
 				CF3ECD352AA042A500964294 /* ThemeFont.swift in Sources */,
 				CF3ECD592AA0A5F200964294 /* DetailViewController.swift in Sources */,
 				CF3ECD1F2AA0416000964294 /* ListViewController.swift in Sources */,
+				CF08E3362AA1AC0D0052AEA3 /* PokemonStatView.swift in Sources */,
+				CF08E33B2AA1EAA10052AEA3 /* GradientView.swift in Sources */,
 				CF3ECD1B2AA0416000964294 /* AppDelegate.swift in Sources */,
 				CF3ECD542AA08C6C00964294 /* ImageContainerView.swift in Sources */,
+				CF08E3342AA1ABFD0052AEA3 /* PokemonInfoView.swift in Sources */,
 				CF3ECD3A2AA043F800964294 /* UIColor+Extension.swift in Sources */,
 				CF3ECD522AA0859200964294 /* ListViewModel.swift in Sources */,
+				CF08E3392AA1BA930052AEA3 /* StatGraph.swift in Sources */,
 				CF3ECD4C2AA07F0A00964294 /* PokemonType.swift in Sources */,
 				CF3ECD1D2AA0416000964294 /* SceneDelegate.swift in Sources */,
 				CF3ECD372AA043D000964294 /* ThemeColor.swift in Sources */,

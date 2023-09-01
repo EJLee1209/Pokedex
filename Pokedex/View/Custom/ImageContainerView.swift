@@ -14,14 +14,6 @@ final class ImageContainerView: UIView {
     private var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.addShadow(
-            offset: CGSize(width: 0, height: 3),
-            color: .black,
-            shadowRadius: 8.0,
-            opacity: 0.3,
-            cornerRadius: 12.0
-        )
-        
         return view
     }()
     
@@ -48,16 +40,53 @@ final class ImageContainerView: UIView {
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
         containerView.addSubview(pokemonImageView)
         pokemonImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(15)
         }
-        
     }
     
     func configure(imageUrl: String) {
         let url = URL(string: imageUrl)
         pokemonImageView.sd_setImage(with: url)
+    }
+    
+    func setContainerViewShadow() {
+        containerView.addShadow(
+            offset: CGSize(width: 0, height: 3),
+            color: .black,
+            shadowRadius: 8.0,
+            opacity: 0.3,
+            cornerRadius: 0
+        )
+    }
+    
+    func setContainerViewCornerRadius(radius: CGFloat) {
+        containerView.addCornerRadius(radius: radius)
+    }
+    
+    func setContainerViewCornerRadius(corners: CACornerMask, radius: CGFloat) {
+        containerView.addRoundedCorners(corners: corners, radius: radius)
+    }
+    
+    func setContainerViewBackgroundColor(color: UIColor?) {
+        containerView.backgroundColor = color
+    }
+    
+    func setContainerViewGradientLayer(colors: [CGColor]) -> CAGradientLayer {
+        layoutIfNeeded()
+        let layer = containerView.addGradientLayer(colors: colors)
+        
+        
+        
+        return layer
+    }
+    
+    func setImageViewContentInset(inset: CGFloat) {
+        pokemonImageView.snp.updateConstraints { make in
+            make.edges.equalToSuperview().inset(inset)
+        }
     }
     
 }

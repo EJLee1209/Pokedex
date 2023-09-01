@@ -82,9 +82,9 @@ class ListViewController: UIViewController {
     
     private func didSelectItem(at indexPath: IndexPath) {
         let pokemon = viewModel.pokemonList[indexPath.row]
-        print(pokemon.stats)
-        let detailVC = DetailViewController()
-//        present(detailVC, animated: true)
+        let detailVM = DetailViewModel(pokemon: pokemon)
+        let detailVC = DetailViewController(viewModel: detailVM)
+        present(detailVC, animated: true)
     }
     
 }

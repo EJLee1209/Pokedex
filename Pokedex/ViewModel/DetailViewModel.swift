@@ -17,6 +17,10 @@ final class DetailViewModel {
         self.pokemon = pokemon
     }
     
+    var imageURL: String {
+        return pokemon.imageUrl
+    }
+    
     var name: String {
         return pokemon.name
     }
@@ -32,6 +36,20 @@ final class DetailViewModel {
         return nil
     }
     
+    var firstTypeColor: UIColor? {
+        guard let firstTypeName = firstTypeName,
+              let type = PokemonType(rawValue: firstTypeName) else { return nil }
+        
+        return ThemeColor.typeColor(type: type)
+    }
+    
+    var secondTypeColor: UIColor? {
+        guard let secondTypeName = secondTypeName,
+              let type = PokemonType(rawValue: secondTypeName) else { return nil }
+        
+        return ThemeColor.typeColor(type: type)
+    }
+    
     var tag: String {
         return pokemon.tag
     }
@@ -41,7 +59,7 @@ final class DetailViewModel {
     }
     
     var heightText: NSMutableAttributedString {
-        return makeMutableAttributedString(firstText: "\(pokemon.height)M", secondText: "Height")
+        return makeMutableAttributedString(firstText: "\(Double(pokemon.height)/10.0)M", secondText: "Height")
     }
     
     var hp: Int {
@@ -65,13 +83,16 @@ final class DetailViewModel {
         
         let attrText = NSMutableAttributedString(
             string: "\(firstText)\n\n",
-            attributes: [.font: ThemeFont.bold(ofSize: 16)]
+            attributes: [
+                .font: ThemeFont.bold(ofSize: 16),
+                .foregroundColor: UIColor.black
+            ]
         )
         attrText.append(NSAttributedString(
             string: secondText,
             attributes: [
                 .font: ThemeFont.regular(ofSize: 13),
-                .foregroundColor: UIColor.lightGray
+                .foregroundColor: UIColor.darkGray
             ]
         ))
         
