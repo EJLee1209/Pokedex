@@ -66,6 +66,11 @@ class ListViewController: UIViewController {
             .sink { [weak self] _ in
                 self?.viewModel.nextPage()
             }.store(in: &cancellables)
+        
+        collectionView.didSelectItemPublisher
+            .sink { [weak self] indexPath in
+                self?.didSelectItem(at: indexPath)
+            }.store(in: &cancellables)
     }
     
     private func createFlowLayout() -> UICollectionViewFlowLayout {
@@ -73,6 +78,13 @@ class ListViewController: UIViewController {
         let width = view.frame.width/2 - 15
         layout.itemSize = .init(width: width, height: width + 100)
         return layout
+    }
+    
+    private func didSelectItem(at indexPath: IndexPath) {
+        let pokemon = viewModel.pokemonList[indexPath.row]
+        print(pokemon.stats)
+        let detailVC = DetailViewController()
+//        present(detailVC, animated: true)
     }
     
 }

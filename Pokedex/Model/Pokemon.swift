@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum StatType: String {
+    case hp, attack, defense, speed
+}
+
 struct PokedexResponse: Codable {
     let count: Int
     let next: String?
@@ -38,6 +42,10 @@ struct Pokemon: Codable, Hashable {
     
     var tag: String {
         return String(format: "#%04d", id)
+    }
+    
+    func statValue(for statType: StatType) -> Int {
+        return stats.first(where: { $0.stat.name == statType.rawValue })?.baseStat ?? 0
     }
     
     func hash(into hasher: inout Hasher) {

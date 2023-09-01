@@ -16,11 +16,12 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        layout()
     }
     
     //MARK: - Helpers
     private func layout() {
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .white
         
         
     }
