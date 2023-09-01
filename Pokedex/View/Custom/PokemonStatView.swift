@@ -76,8 +76,6 @@ final class PokemonStatView: UIView {
         atkStatView.configure(statName: "ATK", statValue: viewModel.attack, statColor: .systemYellow)
         defStatView.configure(statName: "DEF", statValue: viewModel.defense, statColor: .systemBlue)
         spdStatView.configure(statName: "SPD", statValue: viewModel.speed, statColor: .systemGray)
-        
-        
     }
     
 }

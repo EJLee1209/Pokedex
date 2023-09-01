@@ -87,6 +87,8 @@ final class PokemonCell: UICollectionViewCell {
     
     func configure(pokemon: Pokemon) {
         pokemonImageView.configure(imageUrl: pokemon.imageUrl)
+        pokemonImageView.setContainerViewBackgroundColor(
+            color: ThemeColor.typeColor(type: pokemon.pokemonTypes.first ?? .normal).withAlphaComponent(0.6))
         
         tagLabel.text = "No.\(pokemon.tag)"
         nameLabel.text = pokemon.name
@@ -97,7 +99,5 @@ final class PokemonCell: UICollectionViewCell {
             secondTypeLabel.text = pokemon.pokemonTypes[1].rawValue
             secondTypeLabel.backgroundColor = ThemeColor.typeColor(type: pokemon.pokemonTypes[1])
         }
-        
-        
     }
 }

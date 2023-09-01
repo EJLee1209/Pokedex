@@ -75,12 +75,7 @@ final class ImageContainerView: UIView {
     }
     
     func setContainerViewGradientLayer(colors: [CGColor]) -> CAGradientLayer {
-        layoutIfNeeded()
-        let layer = containerView.addGradientLayer(colors: colors)
-        
-        
-        
-        return layer
+        return containerView.addGradientLayer(colors: colors)
     }
     
     func setImageViewContentInset(inset: CGFloat) {

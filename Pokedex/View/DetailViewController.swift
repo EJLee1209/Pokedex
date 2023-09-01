@@ -76,6 +76,7 @@ final class DetailViewController: UIViewController {
         view.layoutIfNeeded()
         
         bind()
+        setContainerViewGradientLayer()
     }
     
     //MARK: - Helpers
@@ -104,11 +105,7 @@ final class DetailViewController: UIViewController {
         }
         
         pokemonImageView.setImageViewContentInset(inset: 80)
-        let gradientLayer = pokemonImageView.setContainerViewGradientLayer(colors: [
-            viewModel.firstTypeColor?.cgColor ?? ThemeColor.typeColor(type: .normal).cgColor,
-            viewModel.secondTypeColor?.cgColor ?? UIColor.white.cgColor])
         
-        pokemonImageView.setCornerRadius(gradientLayer: gradientLayer, radius: 12, corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
     }
     
     private func bind() {
@@ -121,6 +118,14 @@ final class DetailViewController: UIViewController {
             .sink { [weak self] _ in
                 self?.dismiss(animated: true)
             }.store(in: &cancellables)
+    }
+    
+    private func setContainerViewGradientLayer() {
+        let gradientLayer = pokemonImageView.setContainerViewGradientLayer(colors: [
+            viewModel.firstTypeColor?.cgColor ?? ThemeColor.typeColor(type: .normal).cgColor,
+            viewModel.secondTypeColor?.cgColor ?? UIColor.white.cgColor])
+        
+        pokemonImageView.setCornerRadius(gradientLayer: gradientLayer, radius: 12, corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
     }
 }
 
