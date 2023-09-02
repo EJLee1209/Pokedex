@@ -47,12 +47,26 @@ final class DetailViewController: UIViewController {
     }()
     
     
-    private let scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.isScrollEnabled = true
         view.alwaysBounceVertical = true
         view.contentInsetAdjustmentBehavior = .never
+        view.delegate = self
         return view
+    }()
+    
+    //the point when start to interactive
+    var interactiveStartingPoint: CGPoint? = nil
+
+    var draggingDownToDismiss = false
+    
+    private lazy var dismissPanGesture: UIPanGestureRecognizer = {
+        let ges = UIPanGestureRecognizer()
+        ges.maximumNumberOfTouches = 1
+        ges.addTarget(self, action: #selector(handleDismissPan(gesture:)))
+        ges.delegate = self
+        return ges
     }()
     
     var gradientLayer: CAGradientLayer?
@@ -108,6 +122,7 @@ final class DetailViewController: UIViewController {
     //MARK: - Helpers
     private func layout() {
         view.backgroundColor = .white
+        view.addGestureRecognizer(dismissPanGesture)
         
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -154,6 +169,10 @@ final class DetailViewController: UIViewController {
         pokemonImageView.setCornerRadius(gradientLayer: gradientLayer!, radius: 12, corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
     }
     
+    func changeGradientLayer(colors: [CGColor]) {
+        gradientLayer?.colors = colors
+    }
+    
     private func updateStatusBar(hidden: Bool, completion: ((Bool) -> Void)?) {
         statusBarShouldBeHidden = hidden
         UIView.animate(withDuration: 0.5) {
@@ -166,8 +185,64 @@ final class DetailViewController: UIViewController {
         transitioningDelegate = self
         modalPresentationCapturesStatusBarAppearance = true
     }
-}
+    
+    @objc private func handleDismissPan(gesture: UIPanGestureRecognizer) {
+        if !draggingDownToDismiss {
+            return
+        }
+        
+        let startingPoint: CGPoint
+        
+        if let p = interactiveStartingPoint {
+            startingPoint = p
+        } else {
+            startingPoint = gesture.location(in: nil)
+            interactiveStartingPoint = startingPoint
+        }
 
+        let currentLocation = gesture.location(in: nil)
+        
+        var progress = (currentLocation.y - startingPoint.y) / 100
+        
+        //prevent viewController bigger when scrolling up
+        if currentLocation.y <= startingPoint.y {
+            progress = 0
+        }
+        
+        if progress >= 1.0 {
+            dismiss(animated: true, completion: nil)
+            stopDismissPanGesture(gesture)
+            return
+        }
+
+        let targetShrinkScale: CGFloat = 0.86
+        let currentScale: CGFloat = 1 - (1 - targetShrinkScale) * progress
+        
+        switch gesture.state {
+        case .began,.changed:
+            scrollView.isScrollEnabled = false
+            gesture.view?.transform = CGAffineTransform(scaleX: currentScale, y: currentScale)
+            gesture.view?.layer.cornerRadius = 15.0 * (progress)
+            scrollView.showsVerticalScrollIndicator = false
+        case .cancelled,.ended:
+            scrollView.isScrollEnabled = true
+            stopDismissPanGesture(gesture)
+        default:
+            break
+        }
+    }
+    
+    private func stopDismissPanGesture(_ gesture: UIPanGestureRecognizer) {
+        draggingDownToDismiss = false
+        interactiveStartingPoint = nil
+        scrollView.showsVerticalScrollIndicator = true
+        
+        UIView.animate(withDuration: 0.2) {
+            gesture.view?.transform = CGAffineTransform.identity
+        }
+    } 
+    
+}
 
 //MARK: - UIViewControllerTransitioningDelegate
 extension DetailViewController: UIViewControllerTransitioningDelegate {
@@ -184,4 +259,20 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
         return CardPresentationController(presentedViewController: presented, presenting: presenting)
     }
     
+}
+
+extension DetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.contentOffset.y < 0 {
+            scrollView.contentOffset = .zero
+            draggingDownToDismiss = true
+        }
+    }
+}
+
+extension DetailViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

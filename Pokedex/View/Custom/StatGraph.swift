@@ -109,7 +109,7 @@ final class statGraph: UIView {
             make.width.equalTo(graphWidth)
         }
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 1.5) {
             self.statLabel.layer.opacity = 1
             self.layoutIfNeeded()
         }

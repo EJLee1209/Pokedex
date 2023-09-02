@@ -83,6 +83,7 @@ extension PokemonAnimationTransition: UIViewControllerAnimatedTransitioning {
         
         fromVC.statView.removeFromSuperview()
         fromVC.infoView.removeFromSuperview()
+        fromVC.changeGradientLayer(colors: [UIColor.systemBlue.cgColor, UIColor.white.cgColor])
         
         UIView.animate(withDuration: transitonDuration - 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
             let frame = selectedCell.convert(selectedCell.pokemonImageView.frame, to: toVC.view)
@@ -92,6 +93,7 @@ extension PokemonAnimationTransition: UIViewControllerAnimatedTransitioning {
             fromVC.closeButton.alpha = 0
             fromVC.tagLabel.alpha = 0
             fromVC.pokemonImageView.setImageViewContentInset(inset: 15)
+            
         }) { (completed) in
             transitionContext.completeTransition(completed)
         }

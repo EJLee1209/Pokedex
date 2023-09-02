@@ -70,6 +70,11 @@ final class PokemonCell: UICollectionViewCell {
         pokemonImageView.configure(imageUrl: "")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
+    
     //MARK: - Helpers
     private func layout() {
         contentView.addSubview(vStackView)
@@ -99,6 +104,7 @@ final class PokemonCell: UICollectionViewCell {
             secondTypeLabel.text = pokemon.pokemonTypes[1].rawValue
             secondTypeLabel.backgroundColor = ThemeColor.typeColor(type: pokemon.pokemonTypes[1])
         }
+        pokemonImageView.layoutIfNeeded()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
