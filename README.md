@@ -4,7 +4,7 @@
 ---|---|
 
  <br>
-[pokeAPI](https://pokeapi.co/)를 활용한 포켓몬 도감 앱입니다.
+[pokeAPI](https://pokeapi.co/) 를 활용한 포켓몬 도감 앱입니다.
 Combine과 Transition 공부에 초점을 맞춰 토이 프로젝트를 진행했습니다. <br>
 
 <br>
