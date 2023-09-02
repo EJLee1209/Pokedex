@@ -13,7 +13,7 @@ import SnapKit
 class ListViewController: UIViewController {
     
     //MARK: - Properties
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = createFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(PokemonCell.self, forCellWithReuseIdentifier: PokemonCell.identifier)
@@ -26,8 +26,8 @@ class ListViewController: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = .init()
     
+    var selectedCell: PokemonCell?
     private let viewModel: ListViewModel
-    var transition: AppContentTransitionController = .init()
     
     //MARK: - LifeCycle
     init(viewModel: ListViewModel) {
@@ -103,16 +103,15 @@ class ListViewController: UIViewController {
     }
     
     private func didSelectItem(at indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PokemonCell else { return }
+        selectedCell = cell
+        
         let pokemon = viewModel.pokemonList[indexPath.row]
         let detailVM = DetailViewModel(pokemon: pokemon)
         let detailVC = DetailViewController(viewModel: detailVM)
         
-        // transition에 데이터를 넘겨줌
-        transition.indexPath = indexPath
-        transition.superVC = detailVC
-        
         detailVC.modalPresentationStyle = .custom
-        detailVC.transitioningDelegate = transition
+        detailVC.transitioningDelegate = detailVC
         detailVC.modalPresentationCapturesStatusBarAppearance = true
         
         present(detailVC, animated: true)

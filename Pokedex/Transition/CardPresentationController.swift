@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppcontentPresentaion: UIPresentationController {
+class CardPresentationController: UIPresentationController {
     
     lazy var blurView: UIVisualEffectView = {
         var view = UIVisualEffectView(effect: nil)

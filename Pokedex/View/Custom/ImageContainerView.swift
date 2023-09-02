@@ -17,7 +17,7 @@ final class ImageContainerView: UIView {
         return view
     }()
     
-    private var pokemonImageView: UIImageView = {
+    var pokemonImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         return view
@@ -81,7 +81,7 @@ final class ImageContainerView: UIView {
     func setImageViewContentInset(inset: CGFloat) {
         pokemonImageView.snp.updateConstraints { make in
             make.bottom.left.right.equalToSuperview().inset(inset)
-            make.top.equalToSuperview().inset(inset+40)
+            make.top.equalToSuperview().inset(inset+50)
         }
     }
     

@@ -11,7 +11,7 @@ import SDWebImage
 final class PokemonCell: UICollectionViewCell {
     
     //MARK: - Properties
-    private lazy var pokemonImageView = ImageContainerView()
+    lazy var pokemonImageView = ImageContainerView()
     
     private var tagLabel: UILabel = {
         let label = UILabel()

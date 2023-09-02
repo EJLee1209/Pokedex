@@ -13,8 +13,7 @@ class AppContentTransitionController: NSObject {
     
     var superVC: UIViewController?
     var indexPath: IndexPath?
-    
-    
+    var viewModel: DetailViewModel?
     
 }
 

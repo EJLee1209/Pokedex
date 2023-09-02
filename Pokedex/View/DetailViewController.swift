@@ -13,18 +13,20 @@ import SDWebImage
 final class DetailViewController: UIViewController {
     
     //MARK: - Properties
-    private let pokemonImageView = ImageContainerView()
-    private let infoView = PokemonInfoView()
-    private let statView = PokemonStatView()
-    private let tagLabel: UILabel = {
+    var pokemonImageView = ImageContainerView()
+    var infoView = PokemonInfoView()
+    var statView = PokemonStatView()
+    var tagLabel: UILabel = {
         let label = UILabel()
         label.font = ThemeFont.bold(ofSize: 16)
         label.textColor = .white
+        label.alpha = 0
         return label
     }()
     
-    private let closeButton: UIButton = {
+    var closeButton: UIButton = {
         let button = UIButton(type: .close)
+        button.alpha = 0
         return button
     }()
     
@@ -52,6 +54,8 @@ final class DetailViewController: UIViewController {
         view.contentInsetAdjustmentBehavior = .never
         return view
     }()
+    
+    var gradientLayer: CAGradientLayer?
     
     private var cancellables: Set<AnyCancellable> = .init()
     let viewModel: DetailViewModel
@@ -92,13 +96,12 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         layout()
+        setupTransition()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.layoutIfNeeded()
         
-        bind()
         setContainerViewGradientLayer()
     }
     
@@ -131,7 +134,7 @@ final class DetailViewController: UIViewController {
         
     }
     
-    private func bind() {
+    func bind() {
         pokemonImageView.configure(imageUrl: viewModel.imageURL)
         infoView.configure(viewModel: self.viewModel)
         statView.configure(viewModel: self.viewModel)
@@ -144,11 +147,11 @@ final class DetailViewController: UIViewController {
     }
     
     private func setContainerViewGradientLayer() {
-        let gradientLayer = pokemonImageView.setContainerViewGradientLayer(colors: [
+        gradientLayer = pokemonImageView.setContainerViewGradientLayer(colors: [
             viewModel.firstTypeColor?.cgColor ?? ThemeColor.typeColor(type: .normal).cgColor,
             viewModel.secondTypeColor?.cgColor ?? UIColor.white.cgColor])
         
-        pokemonImageView.setCornerRadius(gradientLayer: gradientLayer, radius: 12, corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
+        pokemonImageView.setCornerRadius(gradientLayer: gradientLayer!, radius: 12, corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
     }
     
     private func updateStatusBar(hidden: Bool, completion: ((Bool) -> Void)?) {
@@ -157,9 +160,28 @@ final class DetailViewController: UIViewController {
             self.setNeedsStatusBarAppearanceUpdate()
         }
     }
+    
+    private func setupTransition() {
+        modalPresentationStyle = .custom
+        transitioningDelegate = self
+        modalPresentationCapturesStatusBarAppearance = true
+    }
 }
 
 
-
-
-
+//MARK: - UIViewControllerTransitioningDelegate
+extension DetailViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PokemonAnimationTransition(animationType: .present)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PokemonAnimationTransition(animationType: .dismiss)
+    }
+    
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return CardPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+    
+}
