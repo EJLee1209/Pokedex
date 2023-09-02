@@ -4,7 +4,7 @@
 ---|---|
 
  <br>
-[Poke API] [1]를 활용한 포켓몬 도감 앱입니다.
+[Poke API](https://pokeapi.co/)를 활용한 포켓몬 도감 앱입니다.
 Combine과 Transition 공부에 초점을 맞춰 토이 프로젝트를 진행했습니다. <br>
 <br>
 
@@ -35,5 +35,3 @@ Combine과 Transition 공부에 초점을 맞춰 토이 프로젝트를 진행�
 > AppStore의 아름다운 화면 전환 애니메이션을 항상 구현해보고 싶었는데, 이번 기회에 Transition을 공부하면서 프로젝트에 적용해봤습니다.
 이를 통해 기본적인 Animation을 적용하는 방법과 PresentationController의 역할에 대해서 알게되었습니다.
 
-
-[1]: https://pokeapi.co/
