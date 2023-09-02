@@ -1,6 +1,6 @@
 ## Pokedex
 
-<img src="https://github.com/EJLee1209/Pokedex/assets/101651909/71407a30-b44b-4668-8dc1-ae335499002e"/> | <img src="https://github.com/EJLee1209/Pokedex/assets/101651909/8bec332b-1d50-4055-a342-c185f78fdf40"/>
+<img src="https://github.com/EJLee1209/Pokedex/assets/101651909/71407a30-b44b-4668-8dc1-ae335499002e" width="80%"/> | <img src="https://github.com/EJLee1209/Pokedex/assets/101651909/8bec332b-1d50-4055-a342-c185f78fdf40"/>
 ---|---|
 
  <br>
