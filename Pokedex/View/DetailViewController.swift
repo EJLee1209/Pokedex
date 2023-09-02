@@ -48,12 +48,29 @@ final class DetailViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.isScrollEnabled = true
-//        view.alwaysBounceVertical = true
+        view.alwaysBounceVertical = true
+        view.contentInsetAdjustmentBehavior = .never
         return view
     }()
     
     private var cancellables: Set<AnyCancellable> = .init()
     let viewModel: DetailViewModel
+    
+    //MARK: - Status bar hidden properties
+    
+    var statusBarShouldBeHidden: Bool = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return statusBarShouldBeHidden
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
     
     //MARK: - LifeCycle
     
@@ -64,6 +81,11 @@ final class DetailViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStatusBar(hidden: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -91,7 +113,7 @@ final class DetailViewController: UIViewController {
         
         view.addSubview(topHStackView)
         topHStackView.snp.makeConstraints { make in
-            make.top.left.right.equalTo(view.safeAreaLayoutGuide).inset(15)
+            make.top.left.right.equalToSuperview().inset(26)
         }
         
         scrollView.addSubview(vStackView)
@@ -127,6 +149,13 @@ final class DetailViewController: UIViewController {
             viewModel.secondTypeColor?.cgColor ?? UIColor.white.cgColor])
         
         pokemonImageView.setCornerRadius(gradientLayer: gradientLayer, radius: 12, corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner])
+    }
+    
+    private func updateStatusBar(hidden: Bool, completion: ((Bool) -> Void)?) {
+        statusBarShouldBeHidden = hidden
+        UIView.animate(withDuration: 0.5) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
     }
 }
 

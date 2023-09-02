@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class ContentTransitionController: NSObject {
+class AppContentTransitionController: NSObject {
     
     var superVC: UIViewController?
     var indexPath: IndexPath?
@@ -18,9 +18,9 @@ class ContentTransitionController: NSObject {
     
 }
 
-extension ContentTransitionController: UIViewControllerTransitioningDelegate {
+extension AppContentTransitionController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return nil
+        return AppcontentPresentaion(presentedViewController: presented, presenting: presenting)
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {

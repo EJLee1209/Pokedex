@@ -27,7 +27,7 @@ class ListViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: ListViewModel
-    var transition: ContentTransitionController = .init()
+    var transition: AppContentTransitionController = .init()
     
     //MARK: - LifeCycle
     init(viewModel: ListViewModel) {

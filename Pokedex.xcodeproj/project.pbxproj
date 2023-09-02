@@ -34,7 +34,8 @@
 		CF3ECD542AA08C6C00964294 /* ImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD532AA08C6C00964294 /* ImageContainerView.swift */; };
 		CF3ECD562AA08CC300964294 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD552AA08CC300964294 /* UIView+Extension.swift */; };
 		CF3ECD592AA0A5F200964294 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ECD582AA0A5F200964294 /* DetailViewController.swift */; };
-		CF8C2C342AA3050200439661 /* ContentTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8C2C332AA3050200439661 /* ContentTransitionController.swift */; };
+		CF8C2C342AA3050200439661 /* AppContentTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8C2C332AA3050200439661 /* AppContentTransitionController.swift */; };
+		CF8C2C362AA30BAE00439661 /* AppContentPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8C2C352AA30BAE00439661 /* AppContentPresentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +65,8 @@
 		CF3ECD532AA08C6C00964294 /* ImageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContainerView.swift; sourceTree = "<group>"; };
 		CF3ECD552AA08CC300964294 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		CF3ECD582AA0A5F200964294 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		CF8C2C332AA3050200439661 /* ContentTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTransitionController.swift; sourceTree = "<group>"; };
+		CF8C2C332AA3050200439661 /* AppContentTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentTransitionController.swift; sourceTree = "<group>"; };
+		CF8C2C352AA30BAE00439661 /* AppContentPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentPresentation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,8 @@
 		CF08E33C2AA1F9F90052AEA3 /* Transition */ = {
 			isa = PBXGroup;
 			children = (
-				CF8C2C332AA3050200439661 /* ContentTransitionController.swift */,
+				CF8C2C332AA3050200439661 /* AppContentTransitionController.swift */,
+				CF8C2C352AA30BAE00439661 /* AppContentPresentation.swift */,
 			);
 			path = Transition;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				CF3ECD562AA08CC300964294 /* UIView+Extension.swift in Sources */,
 				CF08E3452AA228700052AEA3 /* LoadingView.swift in Sources */,
 				CF3ECD4E2AA080E000964294 /* PokemonCell.swift in Sources */,
+				CF8C2C362AA30BAE00439661 /* AppContentPresentation.swift in Sources */,
 				CF3ECD3C2AA048C700964294 /* Pokemon.swift in Sources */,
 				CF3ECD352AA042A500964294 /* ThemeFont.swift in Sources */,
 				CF3ECD592AA0A5F200964294 /* DetailViewController.swift in Sources */,
@@ -288,7 +292,7 @@
 				CF08E3362AA1AC0D0052AEA3 /* PokemonStatView.swift in Sources */,
 				CF08E3482AA22A990052AEA3 /* UIViewController+Extension.swift in Sources */,
 				CF3ECD1B2AA0416000964294 /* AppDelegate.swift in Sources */,
-				CF8C2C342AA3050200439661 /* ContentTransitionController.swift in Sources */,
+				CF8C2C342AA3050200439661 /* AppContentTransitionController.swift in Sources */,
 				CF3ECD542AA08C6C00964294 /* ImageContainerView.swift in Sources */,
 				CF08E3342AA1ABFD0052AEA3 /* PokemonInfoView.swift in Sources */,
 				CF3ECD3A2AA043F800964294 /* UIColor+Extension.swift in Sources */,
