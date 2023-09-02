@@ -100,4 +100,46 @@ final class PokemonCell: UICollectionViewCell {
             secondTypeLabel.backgroundColor = ThemeColor.typeColor(type: pokemon.pokemonTypes[1])
         }
     }
+    
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        bounceAnimate(isTouched: true)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        bounceAnimate(isTouched: false)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        bounceAnimate(isTouched: false)
+    }
+    
+    private func bounceAnimate(isTouched: Bool) {
+        
+        if isTouched {
+            PokemonCell.animate(
+                withDuration: 0.5,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: [.allowUserInteraction],
+                animations: {
+                    self.transform = .init(scaleX: 0.96, y: 0.96)
+                    self.layoutIfNeeded()
+                }, completion: nil)
+        } else {
+            PokemonCell.animate(
+                withDuration: 0.5,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0,
+                options: [.allowUserInteraction],
+                animations: {
+                    self.transform = .identity // 원상태로 복구
+                }, completion: nil)
+        }
+        
+    }
 }

@@ -18,6 +18,7 @@ class ListViewController: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(PokemonCell.self, forCellWithReuseIdentifier: PokemonCell.identifier)
         view.contentInset = .init(top: 0, left: 10, bottom: 0, right: 10)
+        view.delaysContentTouches = false
         return view
     }()
     
@@ -26,6 +27,7 @@ class ListViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: ListViewModel
+    var transition: ContentTransitionController = .init()
     
     //MARK: - LifeCycle
     init(viewModel: ListViewModel) {
@@ -74,8 +76,11 @@ class ListViewController: UIViewController {
         viewModel.pokemonListPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] pokemons in
-                self?.loadingView.hideLoadingViewAndStopAnimation()
-                self?.viewModel.updateCollectionView(with: pokemons)
+                if pokemons.count % 20 == 0 {
+                    self?.viewModel.updateCollectionView(with: pokemons)
+                    self?.loadingView.hideLoadingViewAndStopAnimation()
+                }
+                
             }.store(in: &cancellables)
         
         collectionView.reachedBottomPublisher()
@@ -101,7 +106,15 @@ class ListViewController: UIViewController {
         let pokemon = viewModel.pokemonList[indexPath.row]
         let detailVM = DetailViewModel(pokemon: pokemon)
         let detailVC = DetailViewController(viewModel: detailVM)
-        detailVC.modalPresentationStyle = .fullScreen
+        
+        // transition에 데이터를 넘겨줌
+        transition.indexPath = indexPath
+        transition.superVC = detailVC
+        
+        detailVC.modalPresentationStyle = .custom
+        detailVC.transitioningDelegate = transition
+        detailVC.modalPresentationCapturesStatusBarAppearance = true
+        
         present(detailVC, animated: true)
     }
     

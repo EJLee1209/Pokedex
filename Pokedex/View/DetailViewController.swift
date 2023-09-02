@@ -48,6 +48,7 @@ final class DetailViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.isScrollEnabled = true
+//        view.alwaysBounceVertical = true
         return view
     }()
     

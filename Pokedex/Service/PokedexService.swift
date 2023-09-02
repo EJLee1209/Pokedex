@@ -12,7 +12,6 @@ class PokedexService: PokedexServiceType {
     
     private var cancellables: Set<AnyCancellable> = .init()
     
-    private var pokemonList: [Pokemon] = []
     var pokemonListPublisher: CurrentValueSubject<[Pokemon], Never> = .init([])
     
     private var nextUrl: String? = nil
